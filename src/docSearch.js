@@ -20,7 +20,8 @@ class DocSearch {
     this.fields.forEach((field) => {
       url += field + '&';
     });
-    url += `user_key=${process.env.exports.apiKey}`
+    url += 'fields=profile(first_name,last_name),practices(accepts_new_patients,phones(number))&';
+    url += `user_key=${process.env.exports.apiKey}`;
     return url;
   }
 
