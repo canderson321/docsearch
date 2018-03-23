@@ -1,7 +1,36 @@
 body {
-  background-color: lightblue;
+  background-color: black;
 }
 
-.table {
+h3 {
+  color: white;
+}
+
+.container {
+  text-align: center;
+}
+
+.card {
+  background-color: #32383e;
+  color: white;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 0px;
+}
+
+input.form-control {
+  background-color: lightgray;
+  margin-bottom: 5px;
+}
+
+.hidden {
   display: none;
+}
+
+button.hidden {
+  margin-bottom: 10px;
+}
+
+.table-header {
+  margin-top: 50px;
 }

@@ -3,16 +3,8 @@ class DocSearch {
     this.fields = [];
   }
 
-  addLocation(cityPlug) {
-    this.fields.push(`location=${cityPlug}`);
-  }
-
-  addQuery(query) {
-    this.fields.push(`query=${query}`);
-  }
-
-  addName(name) {
-    this.fields.push(`name=${name}`);
+  addField(fieldName, value) {
+    this.fields.push(`${fieldName}=${value}`);
   }
 
   buildURL() {
@@ -20,8 +12,6 @@ class DocSearch {
     this.fields.forEach((field) => {
       url += field + '&';
     });
-    url += 'fields=profile(first_name,last_name),practices(accepts_new_patients,phones(number))&';
-    url += `user_key=${process.env.exports.apiKey}`;
     return url;
   }
 
@@ -42,6 +32,10 @@ class DocSearch {
   }
 
   makeCall(resolve, reject) {
+    this.addField('sort', 'last-name-asc');
+    this.addField('fields', 'profile(first_name,last_name),practices(accepts_new_patients,visit_address,website,phones(number))');
+    this.addField('limit', '25');
+    this.addField('user_key', `${process.env.exports.apiKey}`);
     let url = this.buildURL();
     let promise = this.getPromise(url);
     promise.then(resolve, reject);
