@@ -33,8 +33,13 @@ function showDoctors(response) {
 
   let prev = $('#prev');
   let next = $('#next');
-  if (meta.skip == 0) prev.children('button').prop('disabled', true);
+  console.log(meta.skip);
+  if (meta.skip <= 0)prev.children('button').prop('disabled', true);
+  else prev.children('button').prop('disabled', false);
+
   if (meta.skip + meta.count >=  meta.total) next.children('button').prop('disabled', true);
+  else next.children('button').prop('disabled', false);
+
   prev.unbind('submit');
   prev.submit(meta.skip - 25, searchSubmit);
   next.unbind('submit');
